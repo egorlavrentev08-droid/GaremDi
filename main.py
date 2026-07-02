@@ -110,6 +110,7 @@ async def main():
         BotCommand(command="/top_streak", description="Топ стриков"),
         BotCommand(command="/top_messages", description="Топ сообщений за сегодня"),
         BotCommand(command="/redemption", description="Прогресс восстановления стрика"),
+        BotCommand(command="/admin", description="Панель")
     ])
     logger.info("✅ Команды в меню установлены (только пользовательские)")
     
