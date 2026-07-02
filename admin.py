@@ -6,15 +6,18 @@ from aiogram import Router, F, Bot
 from aiogram.types import Message, CallbackQuery, InlineKeyboardMarkup, InlineKeyboardButton, FSInputFile
 from aiogram.filters import Command
 
-from config import is_admin, ADMIN_IDS, CHAT_ID
+from config import is_admin, ADMIN_IDS, CHAT_ID, TRIGGER_NAMES, MOOD_NAMES  # ← добавить сюда
 from database import get_user_by_identifier, add_coins, set_shield
 from phrases import (
     add_phrase_from_text, confirm_add_phrase,
     delete_phrase_by_global_index, get_all_phrases,
     get_filtered_phrases, get_trigger_from_alias,
     get_mood_from_alias, get_stats, load_phrases,
-    TRIGGER_NAMES, MOOD_NAMES, TRIGGER_EMOJI, MOOD_EMOJI
+    TRIGGER_EMOJI, MOOD_EMOJI  # ← а эти остаются в phrases.py
 )
+
+from database import get_user_by_identifier, add_coins, set_shield
+
 from media import (
     get_media_stats, get_pictures_for_view,
     get_random_picture, get_folder_path,
