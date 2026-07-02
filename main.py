@@ -10,7 +10,7 @@ from aiogram.fsm.storage.memory import MemoryStorage
 from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
-from database import initialize_database
+from database import init_db
 from config import ADMIN_IDS, is_admin, CHAT_ID
 
 from core import (
