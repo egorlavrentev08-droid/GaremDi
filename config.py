@@ -1,7 +1,3 @@
-# ============================================================
-# config.py - ВСЕ НАСТРОЙКИ В ОДНОМ МЕСТЕ
-# ============================================================
-
 # ID основного чата
 CHAT_ID = -1002497100583
 
@@ -90,3 +86,15 @@ def is_admin(user_id: int) -> bool:
 def is_allowed_chat(chat_id: int) -> bool:
     """Проверяет, разрешён ли чат для работы бота"""
     return chat_id in [CHAT_ID, ADMIN_CHAT_ID]
+
+# config.py
+
+# ... (остальной код)
+
+async def is_admin_in_chat(user_id: int, bot: Bot) -> bool:
+    """Проверяет, состоит ли пользователь в админском чате"""
+    try:
+        chat_member = await bot.get_chat_member(ADMIN_CHAT_ID, user_id)
+        return chat_member.status in ["member", "administrator", "creator"]
+    except:
+        return False
