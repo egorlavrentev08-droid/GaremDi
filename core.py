@@ -21,7 +21,7 @@ from database import (
 
 from config import CHAT_ID, CHAT_LINK, ADMIN_IDS, is_admin
 from phrases import get_random_phrase, get_rank_phrase, get_streak_achievement
-from media import get_random_picture_sync as get_random_picture
+from media import get_random_picture
 logger = logging.getLogger(__name__)
 
 # ============================================================
