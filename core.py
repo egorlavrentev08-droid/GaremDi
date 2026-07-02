@@ -116,6 +116,24 @@ def register_handlers(dp):
 
 async def cmd_start(message: Message):
     user = await get_user(message.from_user.id)
+    
+    # --- ЕСЛИ АДМИН ---
+    if is_admin(message.from_user.id):
+        await message.answer(
+            "Добрый день, администратор 🦊\n\n"
+            "Доступные команды:\n"
+            ".выдать @username N — выдать коины\n"
+            ".забрать @username N — забрать коины\n"
+            ".защита @username часы — выдать щит\n"
+            ".ранг @username <ранг> — сменить ранг\n"
+            "+фраза — добавить фразу\n"
+            ".фразы — реестр фраз\n"
+            "-фраза <номер> — удалить фразу\n"
+            "/pic — управление картинками"
+        )
+        return
+    
+    # --- ЕСЛИ ОБЫЧНЫЙ ПОЛЬЗОВАТЕЛЬ ---
     if not user:
         await register_user(message.from_user.id, message.from_user.username)
         await message.answer(
@@ -132,7 +150,6 @@ async def cmd_start(message: Message):
             ".топ соо - топ сообщений за сегодня\n"
             ".искупление - прогресс восстановления стрика"
         )
-
 
 async def cmd_name(message: Message):
     text = message.text
