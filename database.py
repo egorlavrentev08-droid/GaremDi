@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 # 1. ИНИЦИАЛИЗАЦИЯ ТАБЛИЦ
 # ============================================================
 
-async def init_db():
+async def initialize_database():
     """Создаёт таблицы, если их нет"""
     async with aiosqlite.connect(DB_PATH) as db:
         # Таблица пользователей
