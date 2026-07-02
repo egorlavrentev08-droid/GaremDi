@@ -117,20 +117,29 @@ def register_handlers(dp):
 async def cmd_start(message: Message):
     user = await get_user(message.from_user.id)
     
-    # --- ЕСЛИ АДМИН ---
+    # --- ЕСЛИ ПОЛЬЗОВАТЕЛЬ НЕ ЗАРЕГИСТРИРОВАН (В ТОМ ЧИСЛЕ АДМИН) ---
+    if not user:
+        await register_user(message.from_user.id, message.from_user.username)
+        
+        if is_admin(message.from_user.id):
+            await message.answer(
+                "Добрый день, администратор 🦊\n\n"
+                "Вы успешно зарегистрированы в системе.\n\n"
+                "Используйте /me для просмотра анкеты."
+            )
+        else:
+            await message.answer(
+                "🦊 Привет! Я Dori — Архитектор Дисциплины!\n"
+                "Ты зарегистрировался\n\n"
+                "Используй /name чтобы задать себе имя, или /me для просмотра анкеты."
+            )
+        return
+    
+    # --- ЕСЛИ ПОЛЬЗОВАТЕЛЬ УЖЕ ЗАРЕГИСТРИРОВАН ---
     if is_admin(message.from_user.id):
         await message.answer(
             "Добрый день, администратор 🦊\n\n"
-        )
-        return
-    
-    # --- ЕСЛИ ОБЫЧНЫЙ ПОЛЬЗОВАТЕЛЬ ---
-    if not user:
-        await register_user(message.from_user.id, message.from_user.username)
-        await message.answer(
-            "🦊 Привет! Я Dori — Архитектор Дисциплины!\n"
-            "Ты зарегистрировался\n\n"
-            "Используй /name чтобы задать себе имя."
+            "Используйте /me для просмотра анкеты."
         )
     else:
         await message.answer(
@@ -139,7 +148,6 @@ async def cmd_start(message: Message):
             "/shop - магазин\n"
             ".топ стрик - топ стриков\n"
             ".топ соо - топ сообщений за сегодня\n"
-            ".искупление - прогресс восстановления стрика"
         )
 
 async def cmd_name(message: Message):
