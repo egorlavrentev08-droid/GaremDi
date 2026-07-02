@@ -132,7 +132,7 @@ def register_handlers(dp):
     dp.message.register(cmd_phrases_main, Command("phrases"), chat_filter)
     dp.message.register(cmd_phrases_main, Command("фразы"), chat_filter)
     dp.message.register(cmd_phrases_main, Command("phrase"), chat_filter)
-    dp.message.register(cmd_phrases_main, F.text.lower() == ".фразы"), chat_filter)
+    dp.message.register(cmd_phrases_main, F.text.lower() == ".фразы", chat_filter)
     dp.message.register(cmd_phrases_filtered, F.text.lower().startswith(".фразы "), chat_filter)
     dp.message.register(cmd_delete_phrase, Command("deletephrase"), chat_filter)
     dp.message.register(cmd_delete_phrase, F.text.lower().startswith("-фраза "), chat_filter)
