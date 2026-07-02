@@ -121,15 +121,6 @@ async def cmd_start(message: Message):
     if is_admin(message.from_user.id):
         await message.answer(
             "Добрый день, администратор 🦊\n\n"
-            "Доступные команды:\n"
-            ".выдать @username N — выдать коины\n"
-            ".забрать @username N — забрать коины\n"
-            ".защита @username часы — выдать щит\n"
-            ".ранг @username <ранг> — сменить ранг\n"
-            "+фраза — добавить фразу\n"
-            ".фразы — реестр фраз\n"
-            "-фраза <номер> — удалить фразу\n"
-            "/pic — управление картинками"
         )
         return
     
